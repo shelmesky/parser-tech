@@ -845,141 +845,143 @@ YY_RULE_SETUP
 #line 30 "caculator.l"
 { return yytext[0]; }
 	YY_BREAK
+/* 比较操作符, yylval是在.y文件中的联合类型 */
+/* 编译时词法和语法文件同时编译，所以这里可以直接设置yylval */
 /* comparison ops */
 case 11:
 YY_RULE_SETUP
-#line 33 "caculator.l"
-{ yylval.fn = 1; return CMP; }
+#line 35 "caculator.l"
+{ yylval.fn = 1; return CMP; }  // 设置fn值为某个操作符，并返回CMP类型
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 34 "caculator.l"
+#line 36 "caculator.l"
 { yylval.fn = 2; return CMP; }
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 35 "caculator.l"
+#line 37 "caculator.l"
 { yylval.fn = 3; return CMP; }
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 36 "caculator.l"
+#line 38 "caculator.l"
 { yylval.fn = 4; return CMP; }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 37 "caculator.l"
+#line 39 "caculator.l"
 { yylval.fn = 5; return CMP; }
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 38 "caculator.l"
+#line 40 "caculator.l"
 { yylval.fn = 6; return CMP; }
 	YY_BREAK
-/* keywords */
+/* 关键字 */
 case 17:
 YY_RULE_SETUP
-#line 42 "caculator.l"
+#line 44 "caculator.l"
 { return IF; }
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 43 "caculator.l"
+#line 45 "caculator.l"
 { return THEN; }
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 44 "caculator.l"
+#line 46 "caculator.l"
 { return ELSE; }
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 45 "caculator.l"
+#line 47 "caculator.l"
 { return WHILE; }
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 46 "caculator.l"
+#line 48 "caculator.l"
 { return DO; }
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 47 "caculator.l"
+#line 49 "caculator.l"
 { return LET;}
 	YY_BREAK
-/* built in functions */
+/* 内置函数 */
 case 23:
 YY_RULE_SETUP
-#line 50 "caculator.l"
-{ yylval.fn = B_sqrt; return FUNC; }
+#line 52 "caculator.l"
+{ yylval.fn = B_sqrt; return FUNC; }    // 设置fn为具体的函数，返回FUNC类型
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 51 "caculator.l"
+#line 53 "caculator.l"
 { yylval.fn = B_exp; return FUNC; }
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 52 "caculator.l"
+#line 54 "caculator.l"
 { yylval.fn = B_log; return FUNC; }
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 53 "caculator.l"
+#line 55 "caculator.l"
 { yylval.fn = B_print; return FUNC; }
 	YY_BREAK
 /* debug hack */
 case 27:
 YY_RULE_SETUP
-#line 56 "caculator.l"
+#line 58 "caculator.l"
 { debug = atoi(&yytext[5]); printf("debug set to %d\n", debug); }
 	YY_BREAK
 /* names */
 case 28:
 YY_RULE_SETUP
-#line 59 "caculator.l"
-{ yylval.s = lookup(yytext); return NAME; }
+#line 61 "caculator.l"
+{ yylval.s = lookup(yytext); return NAME; }   // 设置yylval.s为lookup返回的一个symbol对象，返回NAME类型
 	YY_BREAK
 case 29:
-#line 62 "caculator.l"
+#line 64 "caculator.l"
 case 30:
 YY_RULE_SETUP
-#line 62 "caculator.l"
-{ yylval.d = atof(yytext); return NUMBER; }
+#line 64 "caculator.l"
+{ yylval.d = atof(yytext); return NUMBER; }    // 设置yylval.d为转换后的浮点数，返回NUMBER类型
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 64 "caculator.l"
+#line 66 "caculator.l"
 
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 65 "caculator.l"
-/* ignore white space */ 
+#line 67 "caculator.l"
+/* ignore white space */    // 忽略空白
 	YY_BREAK
 case 33:
 /* rule 33 can match eol */
 YY_RULE_SETUP
-#line 66 "caculator.l"
-printf("c> "); /* ignore line continuation */
+#line 68 "caculator.l"
+printf("c> "); /* ignore line continuation */   // 忽略新行，打印c>
 	YY_BREAK
 case 34:
 /* rule 34 can match eol */
 YY_RULE_SETUP
-#line 67 "caculator.l"
+#line 69 "caculator.l"
 { return EOL; }
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 69 "caculator.l"
+#line 71 "caculator.l"
 { yyerror("Mystery character %c\n", *yytext); }
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 70 "caculator.l"
+#line 72 "caculator.l"
 YY_FATAL_ERROR( "flex scanner jammed" );
 	YY_BREAK
-#line 982 "caculator.lex.c"
+#line 984 "caculator.lex.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1996,6 +1998,6 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 70 "caculator.l"
+#line 72 "caculator.l"
 
 

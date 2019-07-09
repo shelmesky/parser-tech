@@ -442,9 +442,9 @@ static const yytype_uint8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    45,    45,    46,    47,    48,    51,    52,    59,    60,
-      61,    62,    63,    64,    65,    66,    67,    68,    69,    70,
-      71,    74,    75,    77,    78,    81,    82,    87,    91
+       0,    52,    52,    53,    54,    55,    59,    60,    67,    68,
+      69,    70,    71,    72,    73,    74,    75,    76,    77,    78,
+      79,    82,    83,    85,    86,    90,    91,    96,   100
 };
 #endif
 
@@ -1265,31 +1265,31 @@ yyreduce:
   switch (yyn)
     {
         case 2:
-#line 45 "caculator.y" /* yacc.c:1652  */
+#line 52 "caculator.y" /* yacc.c:1652  */
     { (yyval.a) = newflow('I', (yyvsp[-2].a), (yyvsp[0].a), NULL); }
 #line 1271 "caculator.tab.c" /* yacc.c:1652  */
     break;
 
   case 3:
-#line 46 "caculator.y" /* yacc.c:1652  */
+#line 53 "caculator.y" /* yacc.c:1652  */
     { (yyval.a) = newflow('I', (yyvsp[-4].a), (yyvsp[-2].a), (yyvsp[0].a)); }
 #line 1277 "caculator.tab.c" /* yacc.c:1652  */
     break;
 
   case 4:
-#line 47 "caculator.y" /* yacc.c:1652  */
+#line 54 "caculator.y" /* yacc.c:1652  */
     { (yyval.a) = newflow('W', (yyvsp[-2].a), (yyvsp[0].a), NULL); }
 #line 1283 "caculator.tab.c" /* yacc.c:1652  */
     break;
 
   case 6:
-#line 51 "caculator.y" /* yacc.c:1652  */
+#line 59 "caculator.y" /* yacc.c:1652  */
     { (yyval.a) = NULL; }
 #line 1289 "caculator.tab.c" /* yacc.c:1652  */
     break;
 
   case 7:
-#line 52 "caculator.y" /* yacc.c:1652  */
+#line 60 "caculator.y" /* yacc.c:1652  */
     { if ((yyvsp[0].a) == NULL)
 	                (yyval.a) = (yyvsp[-2].a);
                       else
@@ -1299,104 +1299,104 @@ yyreduce:
     break;
 
   case 8:
-#line 59 "caculator.y" /* yacc.c:1652  */
+#line 67 "caculator.y" /* yacc.c:1652  */
     { (yyval.a) = newcmp((yyvsp[-1].fn), (yyvsp[-2].a), (yyvsp[0].a)); }
 #line 1305 "caculator.tab.c" /* yacc.c:1652  */
     break;
 
   case 9:
-#line 60 "caculator.y" /* yacc.c:1652  */
+#line 68 "caculator.y" /* yacc.c:1652  */
     { (yyval.a) = newast('+', (yyvsp[-2].a),(yyvsp[0].a)); }
 #line 1311 "caculator.tab.c" /* yacc.c:1652  */
     break;
 
   case 10:
-#line 61 "caculator.y" /* yacc.c:1652  */
+#line 69 "caculator.y" /* yacc.c:1652  */
     { (yyval.a) = newast('-', (yyvsp[-2].a),(yyvsp[0].a));}
 #line 1317 "caculator.tab.c" /* yacc.c:1652  */
     break;
 
   case 11:
-#line 62 "caculator.y" /* yacc.c:1652  */
+#line 70 "caculator.y" /* yacc.c:1652  */
     { (yyval.a) = newast('*', (yyvsp[-2].a),(yyvsp[0].a)); }
 #line 1323 "caculator.tab.c" /* yacc.c:1652  */
     break;
 
   case 12:
-#line 63 "caculator.y" /* yacc.c:1652  */
+#line 71 "caculator.y" /* yacc.c:1652  */
     { (yyval.a) = newast('/', (yyvsp[-2].a),(yyvsp[0].a)); }
 #line 1329 "caculator.tab.c" /* yacc.c:1652  */
     break;
 
   case 13:
-#line 64 "caculator.y" /* yacc.c:1652  */
+#line 72 "caculator.y" /* yacc.c:1652  */
     { (yyval.a) = newast('|', (yyvsp[0].a), NULL); }
 #line 1335 "caculator.tab.c" /* yacc.c:1652  */
     break;
 
   case 14:
-#line 65 "caculator.y" /* yacc.c:1652  */
+#line 73 "caculator.y" /* yacc.c:1652  */
     { (yyval.a) = (yyvsp[-1].a); }
 #line 1341 "caculator.tab.c" /* yacc.c:1652  */
     break;
 
   case 15:
-#line 66 "caculator.y" /* yacc.c:1652  */
+#line 74 "caculator.y" /* yacc.c:1652  */
     { (yyval.a) = newast('M', (yyvsp[0].a), NULL); }
 #line 1347 "caculator.tab.c" /* yacc.c:1652  */
     break;
 
   case 16:
-#line 67 "caculator.y" /* yacc.c:1652  */
+#line 75 "caculator.y" /* yacc.c:1652  */
     { (yyval.a) = newnum((yyvsp[0].d)); }
 #line 1353 "caculator.tab.c" /* yacc.c:1652  */
     break;
 
   case 17:
-#line 68 "caculator.y" /* yacc.c:1652  */
+#line 76 "caculator.y" /* yacc.c:1652  */
     { (yyval.a) = newfunc((yyvsp[-3].fn), (yyvsp[-1].a)); }
 #line 1359 "caculator.tab.c" /* yacc.c:1652  */
     break;
 
   case 18:
-#line 69 "caculator.y" /* yacc.c:1652  */
+#line 77 "caculator.y" /* yacc.c:1652  */
     { (yyval.a) = newref((yyvsp[0].s)); }
 #line 1365 "caculator.tab.c" /* yacc.c:1652  */
     break;
 
   case 19:
-#line 70 "caculator.y" /* yacc.c:1652  */
+#line 78 "caculator.y" /* yacc.c:1652  */
     { (yyval.a) = newasgn((yyvsp[-2].s), (yyvsp[0].a)); }
 #line 1371 "caculator.tab.c" /* yacc.c:1652  */
     break;
 
   case 20:
-#line 71 "caculator.y" /* yacc.c:1652  */
+#line 79 "caculator.y" /* yacc.c:1652  */
     { (yyval.a) = newcall((yyvsp[-3].s), (yyvsp[-1].a)); }
 #line 1377 "caculator.tab.c" /* yacc.c:1652  */
     break;
 
   case 22:
-#line 75 "caculator.y" /* yacc.c:1652  */
+#line 83 "caculator.y" /* yacc.c:1652  */
     { (yyval.a) = newast('L', (yyvsp[-2].a), (yyvsp[0].a)); }
 #line 1383 "caculator.tab.c" /* yacc.c:1652  */
     break;
 
   case 23:
-#line 77 "caculator.y" /* yacc.c:1652  */
+#line 85 "caculator.y" /* yacc.c:1652  */
     { (yyval.sl) = newsymlist((yyvsp[0].s), NULL); }
 #line 1389 "caculator.tab.c" /* yacc.c:1652  */
     break;
 
   case 24:
-#line 78 "caculator.y" /* yacc.c:1652  */
+#line 86 "caculator.y" /* yacc.c:1652  */
     { (yyval.sl) = newsymlist((yyvsp[-2].s), (yyvsp[0].sl)); }
 #line 1395 "caculator.tab.c" /* yacc.c:1652  */
     break;
 
   case 26:
-#line 82 "caculator.y" /* yacc.c:1652  */
-    {
+#line 91 "caculator.y" /* yacc.c:1652  */
+    {	// 语句
     if(debug) dumpast((yyvsp[-1].a), 0);
      printf("= %4.4g\n> ", eval((yyvsp[-1].a)));
      treefree((yyvsp[-1].a));
@@ -1405,15 +1405,15 @@ yyreduce:
     break;
 
   case 27:
-#line 87 "caculator.y" /* yacc.c:1652  */
-    {
+#line 96 "caculator.y" /* yacc.c:1652  */
+    {	// 函数定义
                        dodef((yyvsp[-6].s), (yyvsp[-4].sl), (yyvsp[-1].a));
                        printf("Defined %s\n> ", (yyvsp[-6].s)->name); }
 #line 1413 "caculator.tab.c" /* yacc.c:1652  */
     break;
 
   case 28:
-#line 91 "caculator.y" /* yacc.c:1652  */
+#line 100 "caculator.y" /* yacc.c:1652  */
     { yyerrok; printf("> "); }
 #line 1419 "caculator.tab.c" /* yacc.c:1652  */
     break;
@@ -1650,5 +1650,5 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 93 "caculator.y" /* yacc.c:1918  */
+#line 102 "caculator.y" /* yacc.c:1918  */
 

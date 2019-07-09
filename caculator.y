@@ -20,21 +20,28 @@
   int fn;			/* which function */
 }
 
+// 声明token
+// 这些终结符在词法分析中被设置了值，且返回了终结符的类型
 /* declare tokens */
 %token <d> NUMBER
 %token <s> NAME
 %token <fn> FUNC
 %token EOL
 
+// 这些是关键字，无法设置值
 %token IF THEN ELSE WHILE DO LET
 
-
+//设置结合性和优先级
 %nonassoc <fn> CMP
 %right '='
 %left '+' '-'
 %left '*' '/'
 %nonassoc '|' UMINUS
 
+// 这些是非终结符，给它们赋予一个类型
+// 非终结符会被推导为终结符，所以这些类型是由其推导出的其他非终结符号和终结符号构成的
+// 例如有 NAME -> exp -> stmt
+// bison的LALR(1)使用自底向上的方式推导，从一个非终结符最终归约为AST的根
 %type <a> exp stmt list explist
 %type <sl> symlist
 
@@ -42,12 +49,13 @@
 
 %%
 
-stmt: IF exp THEN list           { $$ = newflow('I', $2, $4, NULL); }
-   | IF exp THEN list ELSE list  { $$ = newflow('I', $2, $4, $6); }
-   | WHILE exp DO list           { $$ = newflow('W', $2, $4, NULL); }
-   | exp
+stmt: IF exp THEN list           { $$ = newflow('I', $2, $4, NULL); }	// if (表达式) then 语句列表
+   | IF exp THEN list ELSE list  { $$ = newflow('I', $2, $4, $6); }	// if (表达式) then 语句列表 else 语句列表
+   | WHILE exp DO list           { $$ = newflow('W', $2, $4, NULL); }	// while (表达式) do 语句列表
+   | exp								// 表达式
 ;
 
+// 语句列表: 右递归
 list: /* nothing */ { $$ = NULL; }
    | stmt ';' list { if ($3 == NULL)
 	                $$ = $1;
@@ -78,13 +86,14 @@ symlist: NAME       { $$ = newsymlist($1, NULL); }
  | NAME ',' symlist { $$ = newsymlist($1, $3); }
 ;
 
+// 顶层语法
 calclist: /* nothing */
-  | calclist stmt EOL {
+  | calclist stmt EOL {	// 语句
     if(debug) dumpast($2, 0);
      printf("= %4.4g\n> ", eval($2));
      treefree($2);
     }
-  | calclist LET NAME '(' symlist ')' '=' list EOL {
+  | calclist LET NAME '(' symlist ')' '=' list EOL {	// 函数定义
                        dodef($3, $5, $8);
                        printf("Defined %s\n> ", $3->name); }
 
